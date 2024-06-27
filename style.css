@@ -1,0 +1,175 @@
+:root {
+    --bar-width: 60px;
+    --bar-height: 10px;
+    --hamburger-gap: 6px;
+    --foreground: #333;
+    --background: white;
+    --hamburger-margin: 8px;
+    --animation-timing: 100ms ease-in-out;
+}
+
+/* WHERE THE NAME APPEARS ON THE SCREEN */
+#NameTyped {
+    position: relative;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-family: 'Source Code Pro', monospace;
+    margin-top: 50px;
+    margin-left: 100px;
+    /* remove the outline */
+    /* outline: 2px solid red; */
+    width: max-content;
+    font-size: 34px;
+}
+
+/* MAIN NAME  */
+#NameTyped::before,
+#NameTyped::after {
+    background: white;
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+#NameTyped::before {
+    animation: typewriter 6s steps(12) 1s forwards;
+}
+
+#NameTyped::after {
+    width: .125em;
+    background: black;
+    animation: typewriter 6s steps(12) 1s forwards,
+    blink 750ms infinite;
+}
+
+/* ANIMATION TO TYPE OUT FIRST/LAST NAME */
+@keyframes typewriter {
+ to {
+    left: 100%;
+ }
+}
+
+@keyframes blink {
+    to {background: transparent;
+    }
+}
+/* BOTTOM WITH SOCIAL MEDIA LINKS */
+footer {
+    position: relative;
+    bottom: 0;
+    
+
+}
+
+/* SUBTITLE TO MAIN NAME */
+#subtitle {
+    margin-left: 100px;
+    font-size: 1.5rem;
+    font-weight: 400;
+    opacity: 0;
+    transform: translateY(3rem);
+    animation: fadeInUp 2s ease 1s forwards;
+}
+/* ANIMATION TO HAVE SUBTITLE APPEAR */
+@keyframes fadeInUp {
+    to {
+        opacity: 1; 
+        transform: translateY(0);
+    }
+}
+
+body {
+    margin: 0;
+    /* background: #d11515; */
+}
+
+
+
+.hamburger-menu::before,
+.hamburger-menu::after,
+.hamburger-menu input {
+    content: "";
+    width: var(--bar-width);
+    height: var(--bar-height);
+    background: green;
+    border-radius: 9999px;
+    transform-origin: left center;
+    transition: opacity var(--animation-timing), width var(--animation-timing), rotate var(--animation-timing), background-color  var(--animation-timing);
+}
+
+.hamburger-menu {
+    display: flex;
+    flex-direction: column;
+    gap: var(--hamburger-gap);
+    width: max-content;
+    position: absolute;
+    top: var(--hamburger-margin);
+    left: var(--hamburger-margin);
+    z-index: 2;
+    cursor: pointer;
+    margin-left: 20px;
+    margin-top: 20px;
+        
+}
+
+.hamburger-menu input {
+    appearance: none;
+    padding: 0;
+    margin: 0;
+    outline: none;
+    pointer-events: none;
+}
+
+.hamburger-menu:has(input:checked)::before {
+    rotate: 50deg;
+}
+
+.hamburger-menu:has(input:checked)::after {
+    rotate: -50deg;
+}
+
+.hamburger-menu input:checked {
+    opacity: 0;
+    width: 0;
+} 
+
+
+.sidebar {
+    transition: translate var(--animation-timing);
+    translate: -100%;
+    padding: 0.5rem 1rem;
+    padding-top: 100px;
+    background-color: var(--foreground); 
+    color: var(--background);
+    max-width: 10rem;
+    min-height: 30vh;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-family: 'Poppins', sans-serif;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 20px;
+}
+
+.hamburger-menu:has(input:checked) + .sidebar {
+    translate: 0;
+}
+
+#About h1 {
+    font-size: 100px;
+    margin-top: 500px;
+}
+
+#About {
+    font-size: 25px;
+}
+
+#Projects h1 {
+    font-size: 100px;
+    margin-top: 500px;
+}
+
+#Projects {
+    font-size: 25px;
+    margin-bottom: 300px;
+}
